@@ -126,3 +126,26 @@ Resources:
           mkdir -p ~ansible/.ssh
           cp /home/centos/.ssh/authorized_keys ~ansible/.ssh/
           chown ansible:ansible ~ansible/.ssh/authorized_keys
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value:
+      Ref: YPSinstance
+  AZ:
+    Description: Availability Zone of the newly created EC2 instance
+    Value:
+      Fn::GetAtt:
+      - YPSinstance
+      - AvailabilityZone
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value:
+      Fn::GetAtt:
+      - YPSinstance
+      - PublicDnsName
+  PublicIP:
+    Description: Public IP address of the newly created EC2 instance
+    Value:
+      Fn::GetAtt:
+      - YPSinstance
+      - PublicIp
