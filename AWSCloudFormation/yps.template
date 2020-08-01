@@ -37,6 +37,11 @@ Resources:
     Type: 'AWS::EC2::EIP'
     Properties:
       InstanceId: !Ref YPSinstance
+  YPSsubnetRTBassoc:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      RouteTableId: !Ref YPSrtb
+      SubnetId: !Ref YPSsubnet
 # SecurityGroups
   YPSsgdefault:
     Type: 'AWS::EC2::SecurityGroup'
@@ -57,7 +62,7 @@ Resources:
         ToPort: 7
         CidrIp: 0.0.0.0/0
 # RouteTables
-  YPSrtb:  # Must set this route table as MAIN manually !!!
+  YPSrtb:
     Type: 'AWS::EC2::RouteTable'
     Properties:
       VpcId: !Ref YPSvpc
