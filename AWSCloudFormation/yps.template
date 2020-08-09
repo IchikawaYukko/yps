@@ -61,6 +61,14 @@ Resources:
         FromPort: 7
         ToPort: 7
         CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 443
+        ToPort: 443
+        CidrIp: 0.0.0.0/0
 # RouteTables
   YPSrtb:
     Type: 'AWS::EC2::RouteTable'
@@ -108,7 +116,7 @@ Resources:
           # Get systems ready to accept Ansible configuration
           yum -y update
           
-          /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+          /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=8192
           /sbin/mkswap /var/swap.1
           /sbin/swapon /var/swap.1
           
